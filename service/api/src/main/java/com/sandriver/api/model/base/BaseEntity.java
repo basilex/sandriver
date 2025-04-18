@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import com.sandriver.common.utils.Xid;
 
-
 import java.util.Date;
 
 @Getter

@@ -36,7 +36,7 @@ public class CurrencyService {
                 .countries(countries)
                 .build();
 
-        return currencyRepository.save(updatedCurrency); // Вызов @PreUpdate
+        return currencyRepository.save(updatedCurrency); // call @PreUpdate
     }
 
     public List<Currency> findAll() {

@@ -20,7 +20,7 @@ public class CountryService {
     private final CountryRepository countryRepository;
 
     public List<Country> findAll() {
-        return countryRepository.findAll(); // Используем встроенный метод JpaRepository
+        return countryRepository.findAll();
     }
 
     public Country findById(String id) {
@@ -29,7 +29,6 @@ public class CountryService {
     }
 
     public Country update(Country existingCountry, CountryRequestDto dto, Set<Currency> currencies) {
-        // Используем билдер для обновленной сущности
         Country updatedCountry = existingCountry.toBuilder()
                 .name(dto.getName())
                 .iso2(dto.getIso2())
@@ -47,9 +46,7 @@ public class CountryService {
 
     public Country saveFromDto(CountryRequestDto dto, Set<Currency> currencies) {
         Country country = CountryMapper.toEntity(dto, currencies);
-        System.out.println("Before save: " + country);
         Country savedCountry = countryRepository.save(country);
-        System.out.println("After save: " + savedCountry);
         return savedCountry;
     }
 
