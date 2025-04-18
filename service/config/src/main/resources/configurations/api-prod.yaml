@@ -1,0 +1,61 @@
+server:
+  port: 8081
+
+spring:
+  cloud:
+    discovery:
+      enabled: true
+      eureka:
+        client:
+          service-url:
+            default-zone: http://localhost:8761/eureka/
+
+  datasource:
+    url: jdbc:postgresql://dbs:5432/shpdb_prod
+    username: system
+    password: passw0rd
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      minimum-idle: 5
+      auto-commit: true
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      maximum-pool-size: 10
+      connection-timeout: 30000
+      validation-timeout: 5000
+      leak-detection-threshold: 2000
+      transaction-isolation: TRANSACTION_READ_COMMITTED
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enable:
+        all: true
+      export:
+        prometheus:
+          enabled: true
+          endpoint: /actuator/prometheus
+    info:
+      enabled: true
+    env:
+      enabled: true
+
+logging:
+  level:
+    org.hibernate: INFO
+    org.springframework.jdbc.datasource: INFO

@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: api
+  config:
+    import: optional:configserver:http://localhost:8888
+
+logging:
+  level:
+    org.springframework.cloud: DEBUG
+    org.springframework.core.env: DEBUG

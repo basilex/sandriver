@@ -1,0 +1,31 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enable:
+        all: true
+      export:
+        prometheus:
+          enabled: true
+          endpoint: /actuator/prometheus
+    info:
+      enabled: true
+    env:
+      enabled: true
